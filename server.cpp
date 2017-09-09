@@ -94,9 +94,13 @@ int main(int argc, char *argv[]) {
         while(counter)
         {
             counter = fread(buf + 4,1,BUFLEN - 4,file);
+            std :: cout << counter << "counter " << std :: endl;
             for(int i = 0; i < 4; i++)
                 buf[i] = ((char *)&counter)[i];
             write(s1,buf,BUFLEN);
+            int amount = 0;
+           while(amount < BUFLEN)
+                amount = read(s1,buf,BUFLEN);
         }
         fclose(file);
     }
